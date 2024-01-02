@@ -21,7 +21,6 @@ export default async (req, res) => {
             return res.status(404).json(errorHelper('00032', req, 'Variant not found'));
         }
 
-        // Bulunan varyantın android versiyonu ve dpi bilgisini karşılaştır
         const variant = app.variants.find(v => v.variantId === variantId);
 
         if (!variant) {

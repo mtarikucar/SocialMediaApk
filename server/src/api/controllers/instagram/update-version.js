@@ -10,7 +10,7 @@ export default async (req, res) => {
     }
 
     try {
-        const updatedApp = await AppModel.findByIdAndUpdate(id, updateData, { new: true });
+        const updatedApp = await AppModel.findOneAndUpdate({version : id}, updateData, { new: true });
 
         if (!updatedApp) {
             return res.status(404).json(errorHelper('00099', req, 'Document not found'));

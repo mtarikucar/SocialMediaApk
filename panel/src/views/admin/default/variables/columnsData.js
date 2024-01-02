@@ -1,38 +1,35 @@
-export const columnsDataCheck = [
+export const columnsDataVersion = [
   {
-    Header: "NAME",
-    accessor: "name",
+    Header: "VERSIYON ID",
+    accessor: "version",
   },
   {
-    Header: "PROGRESS",
-    accessor: "progress",
+    Header: "CIKIS TARIHI",
+    accessor: "release_date",
   },
   {
-    Header: "QUANTITY",
-    accessor: "quantity",
-  },
-  {
-    Header: "DATE",
-    accessor: "date",
-  },
+    Header: "TOPLAM VARYANT SAYISI",
+    accessor: "variantsLength",
+  }
 ];
 
 
-export const columnsDataComplex = [
+export const columnsDataDetail = [
+
   {
-    Header: "NAME",
-    accessor: "name",
+    Header: "VARYANT ID",
+    accessor: "version",
   },
   {
-    Header: "STATUS",
-    accessor: "status",
+    Header: "MIMARI",
+    accessor: "architecture",
   },
   {
-    Header: "DATE",
-    accessor: "date",
+    Header: "MINIMUM ANDROID VERSIYONU",
+    accessor: "androidVersion",
   },
   {
-    Header: "PROGRESS",
-    accessor: "progress",
-  },
+    Header: "DPI BILGISI",
+    accessor: "dpi",
+  }
 ];
