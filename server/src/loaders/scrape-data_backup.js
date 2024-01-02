@@ -52,24 +52,31 @@ async function scrapeData(url, accumulatedResults = [], pageNumber = 1) {
         }
 
         const promises = $('.appRow').map(async (i, element) => {
-            const title = $(element).find('.appRowTitle').text().trim();
+            const version = $(element).find('.appRowTitle').text().trim();
             const link = $(element).find('.downloadLink').attr('href');
-            const date = $(element).find('.dateyear_utc').text().trim();
 
-            if (title.toLowerCase().includes('instagram') && !title.toLowerCase().includes('beta') && !title.toLowerCase().includes('alpha')) {
+            // Extract the release date and correct the duplication
+            let release_date = $(element).find('.dateyear_utc').text().trim();
+            release_date = release_date.split(" ").slice(0, 3).join(" "); // Assuming the format is 'October 4, 2023 October 4, 2023'
+
+            // Parse the release date
+            release_date = new Date(release_date);
+
+            if (version.toLowerCase().includes('instagram') && !version.toLowerCase().includes('beta') && !version.toLowerCase().includes('alpha')) {
                 const variants = await scrapeDetails(link);
-                const appData = {title, link, date, variants};
+                const appData = { version, release_date, variants };
 
                 try {
                     let appModel = new AppModel(appData);
                     appModel = await appModel.save();
                     results.push(appModel); // Push the saved document to the results array
-                    console.log(`Saved: ${title}`);
+                    console.log(`Saved: ${version}`);
                 } catch (err) {
                     console.error('Error saving to database:', err);
                 }
             }
         });
+
 
         await Promise.all(promises);
 
@@ -93,8 +100,6 @@ async function scrapeData(url, accumulatedResults = [], pageNumber = 1) {
     }
 }
 
-/*
 export default scrapeData('https://www.apkmirror.com/uploads/?appcategory=instagram-instagram').then(data => {
-    /!*console.log(data);*!/
+    /*console.log(data);*/
 });
-*/

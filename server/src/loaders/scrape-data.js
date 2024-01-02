@@ -8,19 +8,21 @@ const delay = ms => new Promise(resolve => setTimeout(resolve, ms));
 async function scrapeDetails(url) {
     try {
         const {data} = await axios.get("https://www.apkmirror.com" + url, {
-            headers: { 'User-Agent': 'Your Custom User Agent' }
+            headers: {'User-Agent': 'Your Custom User Agent'}
         });
         const $ = cheerio.load(data);
         const variants = [];
 
         $('#downloads .table-row').each((i, element) => {
-            const version = $(element).find('a.accent_color').first().text().trim();
+            const version = $(element).find('.colorLightBlack').first().text().trim();
             const architecture = $(element).find('.table-cell').eq(1).text().trim();
             const androidVersion = $(element).find('.table-cell').eq(2).text().trim();
             const dpi = $(element).find('.table-cell').eq(3).text().trim();
             const downloadLink = $(element).find('.table-cell a.accent_color').attr('href');
 
-            variants.push({version, architecture, androidVersion, dpi, downloadLink});
+            if (version && architecture && androidVersion && dpi && downloadLink) {
+                variants.push({version, architecture, androidVersion, dpi, downloadLink});
+            }
         });
 
         return variants;
@@ -64,7 +66,7 @@ async function scrapeData(url, accumulatedResults = [], pageNumber = 1) {
 
             if (version.toLowerCase().includes('instagram') && !version.toLowerCase().includes('beta') && !version.toLowerCase().includes('alpha')) {
                 const variants = await scrapeDetails(link);
-                const appData = { version, release_date, variants };
+                const appData = {version, release_date, variants};
 
                 try {
                     let appModel = new AppModel(appData);
