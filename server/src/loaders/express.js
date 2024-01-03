@@ -24,8 +24,8 @@ export default (app) => {
   app.enable('trust proxy');
 
   const corsOptions = {
-    origin: 'http://localhost:3000', // Set to the origin you want to allow
-    credentials: true, // Allow credentials
+    origin: 'http://localhost:3000',
+    credentials: true,
   };
 
   app.use(cors(corsOptions));

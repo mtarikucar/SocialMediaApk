@@ -44,26 +44,26 @@ export default async (req, res) => {
  *         application/json:
  *           schema:
  *             type: object
- *               properties:
- *                 _id:
- *                   type: string
- *                 title:
- *                   type: string
- *                 description:
- *                   type: string
- *                 variants:
- *                   type: array
- *                   items:
+ *             properties:
+ *               _id:
+ *                 type: string
+ *               title:
+ *                 type: string
+ *               description:
+ *                 type: string
+ *               variants:
+ *                 type: array
+ *                 items:
+ *                   type: object
+ *                   properties:
+ *                     variantId:
+ *                       type: string
+ *                     androidVersion:
+ *                       type: string
+ *                     dpi:
+ *                       type: string
+ *                   additionalProperties:
  *                     type: object
- *                     properties:
- *                       variantId:
- *                         type: string
- *                       androidVersion:
- *                         type: string
- *                       dpi:
- *                         type: string
- *                       additionalProperties:
- *                         type: object
  *     tags:
  *       - App Management
  *     responses:
@@ -112,4 +112,3 @@ export default async (req, res) => {
  *             schema:
  *               $ref: '#/components/schemas/Result'
  */
-
