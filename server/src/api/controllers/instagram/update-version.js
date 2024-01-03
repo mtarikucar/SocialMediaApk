@@ -6,20 +6,20 @@ export default async (req, res) => {
     const updateData = req.body;
 
     if (!updateData || Object.keys(updateData).length === 0) {
-        return res.status(400).json(errorHelper('00098', req, 'No update data provided'));
+        return res.status(400).json(errorHelper('00022', req, 'No update data provided'));
     }
 
     try {
         const updatedApp = await AppModel.findOneAndUpdate({version : id}, updateData, { new: true });
 
         if (!updatedApp) {
-            return res.status(404).json(errorHelper('00099', req, 'Document not found'));
+            return res.status(404).json(errorHelper('00404', req, 'Document not found'));
         }
 
-        logger('00100', id, getText('en', '00100'), 'Info', req);
+        logger('00200', id, getText('en', '00200'), 'Info', req);
         return res.status(200).json(updatedApp);
     } catch (err) {
-        return res.status(500).json(errorHelper('00101', req, err.message));
+        return res.status(500).json(errorHelper('00008', req, err.message));
     }
 };
 

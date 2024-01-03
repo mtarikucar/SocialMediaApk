@@ -9,7 +9,7 @@ export default async (req, res) => {
     const match = agent.match(agentRegex);
 
     if (!match) {
-        return res.status(400).json(errorHelper('00105', req, 'Invalid agent format'));
+        return res.status(400).json(errorHelper('0033', req, 'Invalid agent format'));
     }
 
     const [, versionId, androidVersion, dpi, variantId] = match;
@@ -18,13 +18,13 @@ export default async (req, res) => {
         const app = await AppModel.findOne({ version: versionId });
 
         if (!app) {
-            return res.status(404).json(errorHelper('00032', req, 'Variant not found'));
+            return res.status(404).json(errorHelper('00404', req, 'version not found'));
         }
 
         const variant = app.variants.find(v => v.version === variantId);
 
         if (!variant) {
-            return res.status(404).json(errorHelper('00032', req, 'Variant not found in app'));
+            return res.status(404).json(errorHelper('00404', req, 'Variant not found in app'));
         }
 
         const isCompatible = parseInt(androidVersion.split('/')[0]) >= parseInt(variant.androidVersion) && parseInt(dpi) >= parseInt(variant.dpi);
@@ -33,11 +33,11 @@ export default async (req, res) => {
             return res.status(200).json({ status: 'fail' });
         }
 
-        logger('00108', variantId, getText('en', '00108'), 'Info', req);
+        logger('00200', variantId, getText('en', '00200'), 'Info', req);
         return res.status(200).json({ status: 'success' });
 
     } catch (err) {
-        return res.status(500).json(errorHelper('00109', req, err.message));
+        return res.status(500).json(errorHelper('00008', req, err.message));
     }
 };
 

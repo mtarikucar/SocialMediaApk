@@ -3,10 +3,10 @@ import {errorHelper, logger, getText} from '../../../utils/index.js';
 
 export default async (req, res) => {
     const app = await AppModel.find({version: req.body.version}).select("variants").catch(err => {
-        return res.status(500).json(errorHelper('00088', req, err.message));
+        return res.status(500).json(errorHelper('00008', req, err.message));
     });
 
-    logger('00089', req.params.id, getText('en', '00089'), 'Info', req);
+    logger('00200', req.params.id, getText('en', '00200'), 'Info', req);
     return res.status(200).json({
         app
     });
