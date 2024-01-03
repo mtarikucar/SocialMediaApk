@@ -44,10 +44,26 @@ export default async (req, res) => {
  *         application/json:
  *           schema:
  *             type: object
- *             description: The update data for the app.
- *             example:
- *               title: "Updated App Title"
- *               description: "Updated description of the app"
+ *               properties:
+ *                 _id:
+ *                   type: string
+ *                 title:
+ *                   type: string
+ *                 description:
+ *                   type: string
+ *                 variants:
+ *                   type: array
+ *                   items:
+ *                     type: object
+ *                     properties:
+ *                       variantId:
+ *                         type: string
+ *                       androidVersion:
+ *                         type: string
+ *                       dpi:
+ *                         type: string
+ *                       additionalProperties:
+ *                         type: object
  *     tags:
  *       - App Management
  *     responses:

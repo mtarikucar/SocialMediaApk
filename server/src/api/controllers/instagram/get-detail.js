@@ -2,7 +2,7 @@ import {AppModel} from '../../../models/index.js';
 import {errorHelper, logger, getText} from '../../../utils/index.js';
 
 export default async (req, res) => {
-    const app = await AppModel.find({title: req.body.title}).select("variants").catch(err => {
+    const app = await AppModel.find({version: req.body.version}).select("variants").catch(err => {
         return res.status(500).json(errorHelper('00088', req, err.message));
     });
 
@@ -26,10 +26,10 @@ export default async (req, res) => {
  *           schema:
  *             type: object
  *             properties:
- *               title:
+ *               version:
  *                 type: string
  *                 description: The title of the app to retrieve details for.
- *                 example: "Example App Title"
+ *                 example: "Example App version"
  *     tags:
  *       - App Management
  *     responses:
