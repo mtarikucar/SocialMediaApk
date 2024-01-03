@@ -1,5 +1,4 @@
 import React, {useMemo} from "react";
-import CardMenu from "../../../../components/card/CardMenu";
 import Card from "../../../../components/card";
 
 import {
@@ -7,7 +6,7 @@ import {
 } from "react-table";
 
 const DetailTable = (props) => {
-    const {columnsData, tableData, setSelectedVersion, selectedVersion} = props;
+    const {columnsData, tableData, setSelectedVersion} = props;
 
     const columns = useMemo(() => columnsData, [columnsData]);
     const data = useMemo(() => tableData, [tableData]);

@@ -6,6 +6,8 @@ import {
     useGlobalFilter, useSortBy, useTable,
 } from "react-table";
 
+
+
 const AppList = (props) => {
     const {columnsData, tableData, setSelectedVersion, selectedVersion} = props;
 
@@ -20,6 +22,9 @@ const AppList = (props) => {
         getTableProps, getTableBodyProps, headerGroups, rows, prepareRow,
     } = tableInstance;
 
+
+
+
     return (<Card extra={"w-full h-fit sm:overflow-auto px-6"}>
         <header className="relative flex items-center justify-between pt-4">
             <div className="text-xl font-bold text-navy-700 dark:text-white">
@@ -27,6 +32,7 @@ const AppList = (props) => {
             </div>
 
             <CardMenu selectedVersion={selectedVersion} setSelectedVersion={setSelectedVersion}/>
+
         </header>
 
         <div className="mt-8 overflow-x-scroll xl:overflow-x-hidden">
@@ -54,7 +60,7 @@ const AppList = (props) => {
                 {rows.map((row, index) => {
                     prepareRow(row);
                     return (
-                        <tr {...row.getRowProps()} key={index} onClick={() => setSelectedVersion(selectedVersion != tableData[index] ? tableData[index] : null)}
+                        <tr {...row.getRowProps()} key={index} onClick={() => setSelectedVersion(selectedVersion !== tableData[index] ? tableData[index] : null)}
                             className={`cursor-pointer rounded ${selectedVersion?.version === row.cells[0].value && "bg-gray-200 ml-2"}`}>
                             {row.cells.map((cell, index) => (
                                 <td

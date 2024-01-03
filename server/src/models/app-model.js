@@ -7,7 +7,7 @@ const appModelSchema = new Schema({
         required: true
     },
     release_date: {
-        type: Date,
+        type: String,
         required: true
     },
     variants: [{

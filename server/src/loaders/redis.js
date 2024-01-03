@@ -1,23 +1,28 @@
+// redisClient.js
 import { createClient } from 'redis';
+import {redisUri} from "../config/index.js";
 
-// Assuming your Redis URI is stored in a configuration file
-import { redisUri } from '../config/index.js';
+
+let client;
 
 const connectRedis = async () => {
-    const client = createClient({
-        url: redisUri
-    });
-
-    client.on('error', (err) => {
-        console.log('Redis Client Error', err);
-    });
-
-    try {
+    if (!client) {
+        client = createClient({
+            url: redisUri
+        });
+        client.on('error', (err) => console.log('Redis Client Error', err));
         await client.connect();
-        console.log('Redis Connection Successful');
-    } catch (err) {
-        console.error('Redis Connection Error:', err);
+        console.log('Redis client connected')
     }
+
+    return client;
+};
+
+export const getRedisClient = () => {
+    if (!client) {
+        throw new Error("Redis client has not been initialized. Call connectRedis first.");
+    }
+    return client;
 };
 
 export default connectRedis;

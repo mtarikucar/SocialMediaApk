@@ -17,3 +17,43 @@ export default async (req, res) => {
         return res.status(500).json(errorHelper('00104', req, err.message));
     }
 };
+
+/**
+ * @swagger
+ * /instagram/delete/{id}:
+ *   delete:
+ *     summary: Delete App
+ *     description: This endpoint deletes an app based on the provided ID.
+ *     parameters:
+ *       - in: path
+ *         name: id
+ *         schema:
+ *           type: string
+ *         required: true
+ *         description: The ID of the app to delete.
+ *     tags:
+ *       - App Management
+ *     responses:
+ *       "200":
+ *         description: App deletion successful. Returns a confirmation message.
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 message:
+ *                   type: string
+ *                   example: Document successfully deleted
+ *       "404":
+ *         description: App not found.
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/Result'
+ *       "500":
+ *         description: Internal server error.
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/Result'
+ */

@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from "react";
+import React  from "react";
 import {useMutation, useQueryClient} from "react-query";
 import {toast} from "react-toastify";
 import Modal from "../../../../components/modal";
@@ -71,12 +71,12 @@ function UpdateModal({selectedVersion, setVersionInfo, versionInfo,setModal,moda
                         <div key={variant._id} className="col-span-4 mt-2">
                             <button
                                 className="w-full text-left p-3 border-b-2 border-gray-300"
-                                onClick={() => setActive(index == active ? false : index)}
+                                onClick={() => setActive(index === active ? false : index)}
                             >
                                 {variant.version}
                             </button>
                             <div
-                                className={`transition-max-height duration-700 ease-in-out overflow-hidden ${active == index ? 'max-h-96' : 'max-h-0'}`}
+                                className={`transition-max-height duration-700 ease-in-out overflow-hidden ${active === index ? 'max-h-96' : 'max-h-0'}`}
                             >
 
                                 <input

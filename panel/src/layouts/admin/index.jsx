@@ -10,7 +10,7 @@ import 'react-toastify/dist/ReactToastify.css';
 export default function Admin(props) {
 
     const location = useLocation();
-    const [currentRoute, setCurrentRoute] = React.useState("");
+    const [_, setCurrentRoute] = React.useState("");
 
 
     React.useEffect(() => {

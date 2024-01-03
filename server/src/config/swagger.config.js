@@ -12,17 +12,9 @@ export default {
       },
     ],
   },
-  tags: [
-    {
-      "name": "User",
-      "description": "API for users"
-    }
-  ],
   apis: [
     "src/models/*.js",
     "src/utils/helpers/*.js",
-    "src/api/controllers/user/*.js",
-    "src/api/controllers/user/edit/*.js",
-    "src/api/controllers/user/auth/*.js"
+    "src/api/controllers/instagram/*.js",
   ]
 };

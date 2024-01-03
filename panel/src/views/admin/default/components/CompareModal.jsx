@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from "react";
+import React, {useState} from "react";
 import {useMutation, useQueryClient} from "react-query";
 import {toast} from "react-toastify";
 import Modal from "../../../../components/modal";

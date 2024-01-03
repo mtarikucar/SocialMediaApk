@@ -40,3 +40,45 @@ export default async (req, res) => {
         return res.status(500).json(errorHelper('00109', req, err.message));
     }
 };
+
+/**
+ * @swagger
+ * /instagram/compare:
+ *   get:
+ *     summary: Check App Compatibility
+ *     description: This endpoint checks if an app variant is compatible with the user's device based on the provided agent string.
+ *     parameters:
+ *       - in: query
+ *         name: agent
+ *         schema:
+ *           type: string
+ *         required: true
+ *         description: User agent string containing device and app information.
+ *     tags:
+ *       - Compatibility
+ *     responses:
+ *       "200":
+ *         description: Compatibility check successful. Returns whether the app variant is compatible or not.
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/Result'
+ *       "400":
+ *         description: Invalid agent format.
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/Result'
+ *       "404":
+ *         description: App variant not found.
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/Result'
+ *       "500":
+ *         description: Internal server error.
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/Result'
+ */

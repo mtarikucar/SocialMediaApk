@@ -20,10 +20,8 @@ const Dashboard = () => {
 
 
     const {
-        data: apps,
         isLoading,
         isError,
-        error
     } = useQuery(['apps'], async () => {
         const response = await axios.get(`/instagram`);
         return response.data;
@@ -67,7 +65,6 @@ const Dashboard = () => {
                         <DetailTable
                             columnsData={columnsDataDetail}
                             tableData={selectedVersion.variants || []}
-                            selectedVersion={selectedVersion}
                             setSelectedVersion={setSelectedVersion}
                         />
                     </motion.div>

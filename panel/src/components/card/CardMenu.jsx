@@ -3,7 +3,6 @@ import Dropdown from "../dropdown";
 import axios from "../../api/axios";
 import {useMutation, useQueryClient} from "react-query";
 import {toast} from "react-toastify";
-import Modal from "../modal";
 import UpdateModal from "../../views/admin/default/components/UpdateModal";
 import CompareModal from "../../views/admin/default/components/CompareModal";
 

@@ -1,5 +1,11 @@
 import { Router } from 'express';
-import {getAll, getDetail, updateVersion, deleteVersion, compareVersion} from '../controllers/instagram/index.js';
+import {
+    getAll,
+    getDetail,
+    updateVersion,
+    deleteVersion,
+    compareVersion,
+} from '../controllers/instagram/index.js';
 
 const router = Router();
 
