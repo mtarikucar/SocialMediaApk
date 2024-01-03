@@ -4,24 +4,24 @@ import { errorHelper, logger, getText } from '../../../utils/index.js';
 export default async (req, res) => {
     const { agent } = req.query;
 
-    // Agent bilgisinden gerekli verileri parse et
-    const agentRegex = /(\d+\.\d+\.\d+\.\d+\.\d+) Android \((\d+\/\d+); (\d+)dpi; .+; .+; .+; .+; (.+); en_.+; (\d+)\)/;
+
+    const agentRegex = /(Instagram .*?\d+\.\d+\.\d+\.\d+\.\d+) Android \((\d+\/\d+); (\d+)dpi; .+; .+; .+; .+; .+; .+; (\d+)\)/;
     const match = agent.match(agentRegex);
 
     if (!match) {
         return res.status(400).json(errorHelper('00105', req, 'Invalid agent format'));
     }
 
-    const [, versionId, androidVersion, dpi, , variantId] = match;
+    const [, versionId, androidVersion, dpi, variantId] = match;
 
     try {
-        const app = await AppModel.findOne({ 'variants.variantId': variantId });
+        const app = await AppModel.findOne({ version: versionId });
 
         if (!app) {
             return res.status(404).json(errorHelper('00032', req, 'Variant not found'));
         }
 
-        const variant = app.variants.find(v => v.variantId === variantId);
+        const variant = app.variants.find(v => v.version === variantId);
 
         if (!variant) {
             return res.status(404).json(errorHelper('00032', req, 'Variant not found in app'));
